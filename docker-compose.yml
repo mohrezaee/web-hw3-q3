@@ -51,7 +51,7 @@ services:
       - redis
     environment:
       - DB_HOST=postgres-auth
-      - DB_PORT=5433
+      - DB_PORT=5432
       - DB_USER=test
       - DB_DATABASE=postgres
       - DB_PASSWORD=1234
@@ -78,7 +78,12 @@ services:
 
   proxy:
     container_name: proxy
-    build: ./nginx
+    image: nginx:alpine
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 
    
 volumes:

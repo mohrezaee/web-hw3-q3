@@ -50,8 +50,8 @@ services:
       - postgres-auth
       - redis
     environment:
-      - DB_HOST=postgres
-      - DB_PORT=5432
+      - DB_HOST=postgres-auth
+      - DB_PORT=5433
       - DB_USER=test
       - DB_DATABASE=postgres
       - DB_PASSWORD=1234
@@ -75,6 +75,11 @@ services:
       - GO_AUTH_HOST=http://go-auth:8888
     ports:
       - 3000:3000
+
+  proxy:
+    container_name: proxy
+    build: ./nginx
+
    
 volumes:
   db-data:
